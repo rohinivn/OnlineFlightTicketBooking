@@ -1,0 +1,60 @@
+﻿@model IEnumerable<OnlineFlightTicketBooking.Entity.FlightClassDetail>
+
+@{
+    ViewBag.Title = "DisplayFlightClassDetail";
+}
+
+<h2>Display Flight Class Detail</h2>
+@*@if (HttpContext.Current.User.IsInRole("admin"))
+    {
+    <p>
+        <b>@Html.ActionLink("Create New", "AddFlightClassDetail")</b>
+    </p>
+    }*@
+@using (Html.BeginForm())
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightClass.FlightClassName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoOfSeat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Flight.FlightName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightClass.FlightClassName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoOfSeat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Flight.FlightName)
+                </td>
+                @if (HttpContext.Current.User.IsInRole("admin"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "EditFlightClassDetail", new { id = item.FlightClassDetailId }) |
+                        @*@Html.ActionLink("Details", "Details", new { id=item.FlightClassDetailId }) |*@
+                        @Html.ActionLink("Delete", "DeleteFlightClassDetail", new { id = item.FlightClassDetailId })
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+}

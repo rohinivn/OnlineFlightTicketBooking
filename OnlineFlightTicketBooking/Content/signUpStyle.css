@@ -1,0 +1,18 @@
+﻿
+input[type=text], input[type=password],select{
+    width: 30em;
+    padding: 1em 2em 1em 1em;
+    /*margin: 8px 0;
+    display: inline-block;*/
+    border: 1px solid #ccc;
+    /*box-sizing: border-box;*/
+}
+label {
+    padding: 1em 4em 1em 0em;
+}
+h2{
+    text-align:center;
+}
+span{
+    color:red;
+}

@@ -1,0 +1,54 @@
+﻿@model OnlineFlightTicketBooking.Models.FlightClassDetailViewModel
+
+@{
+    ViewBag.Title = "EditFlightClassDetail";
+}
+
+<h2>EditFlightClassDetail</h2>
+
+@using (Html.BeginForm("UpdateFlightClassDetail","FlightClassDetail"))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>FlightClassDetailViewModel</h4>
+    <hr />
+    @Html.HiddenFor(model => model.FlightClassDetailId)
+    @Html.HiddenFor(model => model.FlightId)
+    <div class="form-group">
+        @Html.LabelFor(model => model.FlightClassId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="textbox">
+            @Html.DropDownListFor(model => model.FlightClassId, ViewBag.flightClass as IEnumerable<SelectListItem>)
+            <span> @Html.ValidationMessageFor(model => model.FlightClassId,"",new { @style="color:red" })</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cost, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Cost, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Cost,"",new { @style="color:red" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NoOfSeat, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NoOfSeat, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NoOfSeat,"",new { @style="color:red" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+        <br/>
+        <div>
+            @Html.ActionLink("Back to List", "DisplayFlightClassDetail")
+        </div>
+
+    </div>
+</div>
+}
+

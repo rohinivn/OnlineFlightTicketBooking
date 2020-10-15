@@ -1,0 +1,40 @@
+﻿body {
+    background-image: url("flight.jpg");
+    background-size: cover;
+    align-content:center;
+}
+ul {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+li {
+    float: right;
+    font-size:1.5em;
+}
+form {
+    margin-left:30em;
+    background-image: linear-gradient(to right,lightgray, gray);
+    width:30em;
+    padding: 0.5em 0.5em 0.5em 1em;
+}
+h2 ,h3{
+    text-align: center;
+}
+
+.nav-bar {
+    padding: 0.1em;
+    background-color:lightgray;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 1em 1.1em;
+    text-decoration: none;
+}
+
+    li a:hover {
+        background-color: black;
+    }

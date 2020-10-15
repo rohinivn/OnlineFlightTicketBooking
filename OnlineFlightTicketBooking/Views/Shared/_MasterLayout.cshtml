@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<html>
+<head>
+    <title>@ViewBag.Title-Online Flight Ticket Booking</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <link rel="stylesheet" href="~/Content/Style.css" type="text/css" />
+</head>
+<body>
+    <div class="nav-bar">
+        <ul>
+            <li>@Html.ActionLink("SignUp", "SignUp", "Account")</li>
+            @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                <li>@Html.ActionLink("Logout", "LogOff", "Account")</li>
+                <li>@Html.ActionLink("Edit Profile", "EditProfile", "Account")</li>
+                <li>@Html.ActionLink("View Profile", "ViewProfile", "Account")</li>
+
+            }
+            else
+            {
+                <li>@Html.ActionLink("Login", "Login", "Account")</li>
+            }
+            <li>@Html.ActionLink("Available Flights", "DisplayFlightDetails", "Flight")</li>
+
+
+            @if (HttpContext.Current.User.IsInRole("admin"))
+            {
+                <li>@Html.ActionLink("Flight Class Type", "DisplayFlightClass", "FlightClass")</li>
+
+            }
+        </ul>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

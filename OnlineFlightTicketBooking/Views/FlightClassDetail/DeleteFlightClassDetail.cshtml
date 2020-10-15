@@ -1,0 +1,60 @@
+﻿@model OnlineFlightTicketBooking.Entity.FlightClassDetail
+
+@{
+    ViewBag.Title = "DeleteFlightClassDetail";
+}
+
+<h2>Delete Flight Class Detail</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <h4>FlightClassDetail</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            @Html.HiddenFor(model=>model.FlightClassDetailId)
+            <dt>
+                <b>  @Html.DisplayNameFor(model => model.FlightId)</b>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FlightId)
+            </dd>
+
+            <dt>
+                <b> @Html.DisplayNameFor(model => model.FlightClassId)</b>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FlightClassId)
+            </dd>
+
+            <dt>
+                <b>  @Html.DisplayNameFor(model => model.Cost)</b>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cost)
+            </dd>
+
+            <dt>
+                <b> @Html.DisplayNameFor(model => model.NoOfSeat)</b>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NoOfSeat)
+            </dd>
+
+        </dl>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "DisplayFlightClassDetail")
+        </div>
+    </div>
+}
+

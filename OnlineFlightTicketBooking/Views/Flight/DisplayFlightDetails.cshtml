@@ -1,0 +1,98 @@
+﻿@model IEnumerable<OnlineFlightTicketBooking.Entity.Flight>
+
+@{
+    ViewBag.Title = "FlightDetails";
+}
+<style>
+    form {
+        margin-left: 30em;
+        background-image: linear-gradient(to right,lightgray, gray);
+        width: 40em;
+        padding: 0.5em 0.5em 0.5em 1em;
+    }
+</style>
+<h2>Flight Details</h2>
+
+@using (Html.BeginForm("DisplayFlightDetails", "Flight", FormMethod.Get))
+{
+    if (HttpContext.Current.User.IsInRole("admin"))
+    {
+        <p>
+            @Html.ActionLink("Add New Flight", "AddFlight")
+        </p>
+    }
+    @Html.TextBox("search")
+    <input type="submit" value="Search" />
+    <table class="table">
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetLoation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DispatchDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalDate)
+            </th>
+            <th>Action</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (Model.Count() == 0)
+            {
+                <tr>
+                    <td style="color:red"> No matches found</td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FlightId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FlightName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartLocation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TargetLoation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DispatchDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ArrivalDate)
+                    </td>
+                    @if (HttpContext.Current.User.IsInRole("admin"))
+                    {
+                        <td>
+                            @Html.ActionLink("Edit", "EditFlightDetails", new { id = item.FlightId }) |
+                            @Html.ActionLink("Delete", "DeleteFlight", new { id = item.FlightId })
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.ActionLink("Book", "BookTicket","Ticket")
+                        </td>
+                    }
+                </tr>
+            }
+        }
+
+    </table>
+}
+

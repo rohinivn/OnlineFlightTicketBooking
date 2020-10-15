@@ -1,0 +1,115 @@
+﻿@model OnlineFlightTicketBooking.Models.SignUpViewModel
+
+@{
+    ViewBag.Title = "SignUp";
+}
+<link rel="stylesheet" href="~/Content/signUpStyle.css" type="text/css" />
+<script type="text/javascript" src="~/Scripts/ClientSideValidation.js"></script>
+<h2>SignUp</h2>
+
+
+@using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            *@Html.LabelFor(model => model.Name)
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name,null,new { @onchange = "validateUserName()" })
+                @Html.ValidationMessageFor(model => model.Name)<span id="name"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            *@Html.LabelFor(model => model.EmailId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmailId)<span id="email"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            *@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password)<span id="password"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            *@Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword)<span id="confirmPassword"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.RadioButtonFor(Model => Model.Gender, "Male", new { id = "Male" })Male
+                @Html.RadioButtonFor(Model => Model.Gender, "Female", new { id = "Female" })Female
+                @Html.RadioButtonFor(Model => Model.Gender, "Others", new { id = "Others" })Others
+                @Html.ValidationMessageFor(model => model.Gender)
+            </div>
+        </div>
+
+        <div class="form-group">
+            *@Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhoneNumber)<span id="number"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            *@Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Address)
+            </div>
+        </div>
+
+        <div class="form-group">
+            *@Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("City", new List<SelectListItem> {
+               new SelectListItem{Text="Coimbatore",Value="Coimbatore"},
+               new SelectListItem{Text="Kerala",Value="Kerala"},
+               }, "Select City")
+                @Html.ValidationMessageFor(model => model.City)
+            </div>
+        </div>
+
+        <div class="form-group">
+            *@Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("State", new List<SelectListItem> {
+       new SelectListItem{Text="TamilNadu",Value="TN"},
+       new SelectListItem{Text="Karnataka",Value="Karnataka"},
+       }, "selectState")
+                @Html.ValidationMessageFor(model => model.State)
+            </div>
+        </div>
+
+        <div class="form-group">
+            *@Html.LabelFor(model => model.PinCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.PinCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PinCode)
+            </div>
+        </div><br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="SignUp" class="btn btn-default" />
+            </div><br />
+            <div>
+                Already have an account??@Html.ActionLink("Login", "Login")
+            </div>
+
+        </div>
+    </div>
+}
+
+

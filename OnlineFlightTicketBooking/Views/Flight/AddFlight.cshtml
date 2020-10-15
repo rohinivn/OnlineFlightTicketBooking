@@ -1,0 +1,73 @@
+﻿@model OnlineFlightTicketBooking.Models.FlightViewModel
+
+@{
+    ViewBag.Title = "AddFlight";
+}
+
+<h2>Add Flight</h2>
+
+@using (Html.BeginForm("AddFlight", "Flight", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            *@Html.LabelFor(model => model.FlightName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FlightName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FlightName, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            *@Html.LabelFor(model => model.StartLocation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StartLocation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StartLocation, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            *@Html.LabelFor(model => model.TargetLoation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TargetLoation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TargetLoation, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            *@Html.LabelFor(model => model.DispatchDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DispatchDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DispatchDate, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            *@Html.LabelFor(model => model.ArrivalDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ArrivalDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ArrivalDate, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+        @*@for (int item = 0; item < Model.FlightClassDetailViewModels.Count; item++)
+            {
+                @Html.DisplayFor(m => Model.FlightClassDetailViewModels[item].FlightClassName)<span>&nbsp;</span>@Html.HiddenFor(m => Model.FlightClassDetailViewModels[item].FlightClassId)
+                @Html.Label("Cost")<span>&nbsp;</span> @Html.TextBoxFor(m => Model.FlightClassDetailViewModels[item].Cost)<span>&nbsp;</span>@Html.Label("Tickets")<span>&nbsp;</span>@Html.TextBoxFor(m => Model.FlightClassDetailViewModels[item].Ticket)
+            }*@
+
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add Flight" class="btn btn-default" />
+            </div><br />
+            <div>
+                @Html.ActionLink("Back to Flight Details", "DisplayFlightDetails")
+            </div>
+        </div>
+    </div>
+}
+
+

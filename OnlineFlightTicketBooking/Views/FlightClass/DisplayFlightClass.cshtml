@@ -1,0 +1,49 @@
+﻿@model IEnumerable<OnlineFlightTicketBooking.Entity.FlightClass>
+
+@{
+    ViewBag.Title = "DisplayFlightDetails";
+}
+
+<h2>Display Flight Class</h2>
+@using (Html.BeginForm())
+ {
+    if (HttpContext.Current.User.IsInRole("admin"))
+    {
+
+        <p>
+            @Html.ActionLink("Create New", "AddFlightClass")
+        </p>
+    }
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightClassName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightClassDescription)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightClassName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightClassDescription)
+                </td>
+                @if (HttpContext.Current.User.IsInRole("admin"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "EditFlightClass", new { id = item.FlightClassId }) |
+                        @*@Html.ActionLink("Details", "Details", new { id=item.FlightClassesId }) |*@
+                        @Html.ActionLink("Delete", "DeleteFlightClass", new { id = item.FlightClassId })
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+}
